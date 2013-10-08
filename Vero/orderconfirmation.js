@@ -16,8 +16,9 @@ if (document.getElementById("dataLayer")) {
     console.log(jsonCant.length);
     if (jsonCant.length == 3) {
       jsonUser = jsonUser.replace(/var/g, "");
+      jsonUser = jsonUser.replace(/\s/g, "");
       console.log("jsonUSer ====> " + jsonUser);
-      var matches = jsonUser.match(/\[(.*?)\]/);
+      var matches = jsonUser.split('}]');
       console.log("matches ====> " + matches);
       if (matches) {
 
