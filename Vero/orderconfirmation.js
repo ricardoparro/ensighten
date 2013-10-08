@@ -2,6 +2,8 @@ var maxCallsDataLayer = 6;
 var maxCallsProductId = 6;
 console.log("entrou");
 
+var variables = new Array();
+
 var veroEnsighten = function(){
 maxCallsDataLayer--;
 if (document.getElementById("dataLayer")) {
@@ -18,13 +20,48 @@ if (document.getElementById("dataLayer")) {
       var matches = jsonUser.match(/\[(.*?)\]/);
       console.log("matches ====> " + matches);
       if (matches) {
-        var submatch = matches[1];
-        console.log("submatch ====> " + submatch);  
-        var arrayVariables = JSON.parse(submatch);
-        console.log("arrayVariables ====> " + arrayVariables);  
-        
-       
-      
+
+
+
+        // $.each(matches, function(index, value) {
+
+        console.log("matches 0 ===========================================>" + matches[0]);
+
+        console.log("matches 1 ===========================================>" + matches[1]);
+
+        //   var submatch = matches[index];
+        //   console.log("submatch ====> " + submatch);  
+        //   var arrayVariables = JSON.parse(submatch);
+        //   console.log("arrayVariables ====> " + arrayVariables);  
+          
+        //   $.each(arrayVariables, function(key, val) {
+        //     console.log("type ============================> " + typeof val);
+        //     if(typeof val == "object"){
+        //       variables["transactions"] = val;
+        //     }
+        //     else{
+        //       variables[key] = val;
+        //     }
+
+        //     console.log("key ---->" + key);
+        //     console.log("val ----->" + val);
+
+          
+            
+
+        //   }); 
+        // });
+
+   //     console.log("final ===========================================>" + variables["transactions"]);
+
+
+     // $.each(variables["transactions"], function(i, v) {
+
+     //    console.log("key ---->" + i);
+     //    console.log("val ----->" + v);
+
+     // });
+
       // $.each(cartTotalOrder, function(key, val) {
       //   console.log("key ---->" + key);
       //   console.log("val ----->" + val.orderValue);
