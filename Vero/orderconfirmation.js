@@ -1,18 +1,16 @@
-var trimComma = function(stringToTest){
-  var len= stringToTest.length; // length of the original string
-  var lastChar = stringToTest.substring(len-1, len); // get the last char of the original string
-  if (lastChar == ",") { // if the last char is dot, remove the last char
-    result = stringToTest.substring(0, len-1);
-  }
-  else { // otherwise do nothing
-    result = stringToTest;
-  }
-  return result;
-}
+// var trimComma = function(stringToTest){
+//   var len= stringToTest.length; // length of the original string
+//   var lastChar = stringToTest.substring(len-1, len); // get the last char of the original string
+//   if (lastChar == ",") { // if the last char is dot, remove the last char
+//     result = stringToTest.substring(0, len-1);
+//   }
+//   else { // otherwise do nothing
+//     result = stringToTest;
+//   }
+//   return result;
+// }
 
 var maxCallsDataLayer = 6;
-var maxCallsProductId = 6;
-var variables = new Array();
 
 var veroEnsighten = function(){
 maxCallsDataLayer--;
@@ -28,8 +26,8 @@ if (document.getElementById("dataLayer")) {
       var pos = jsonUser.indexOf('}');
       var transactionsAux = jsonUser.substring(0, pos + 2).split('=');
       var transactionTotalOrderAux = jsonUser.substring(pos, (jsonUser.length - 1)).split('=');
-      var transactionTotalOrder = $.parseJSON( trimComma(transactionsAux[1]));
-      var transactions = $.parseJSON(trimComma(transactionTotalOrderAux[1]));
+      var transactionTotalOrder = $.parseJSON( transactionsAux[1]);
+      var transactions = $.parseJSON(transactionTotalOrderAux[1]);
       var itemsCart = new Array();
 
       $.each(transactions, function(index, value) {
