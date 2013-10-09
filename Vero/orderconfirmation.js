@@ -12,41 +12,27 @@ var trimComma = function(stringToTest){
 
 var maxCallsDataLayer = 6;
 var maxCallsProductId = 6;
-console.log("entrou");
-
 var variables = new Array();
 
 var veroEnsighten = function(){
 maxCallsDataLayer--;
 if (document.getElementById("dataLayer")) {
-    console.log("dataLayer element exists");
     var jsonUser = [];
     jsonUser = $("#dataLayer").html();
-    console.log(jsonUser);
     var jsonCant = jsonUser.split("var");
-    console.log(jsonCant);
-    console.log(jsonCant.length);
+   
     if (jsonCant.length == 3) {
       jsonUser = jsonUser.replace(/var/g, "").replace(/\s/g, "");
-      
+      jsonUser = jsonUser.replace(",]", "]");
       console.log("jsonUSer ====> " + jsonUser);
       var pos = jsonUser.indexOf('}');
-      console.log("position ==============> " + pos);
-
       var transactionsAux = jsonUser.substring(0, pos + 2).split('=');
       var transactionTotalOrderAux = jsonUser.substring(pos, (jsonUser.length - 1)).split('=');
-
-      console.log(transactionsAux[1]);
       var transactionTotalOrder = $.parseJSON( trimComma(transactionsAux[1]));
       var transactions = $.parseJSON(trimComma(transactionTotalOrderAux[1]));
-
-      console.log("transactions ==============> " + transactions);
-      console.log("transactionTotalOrder ==============> " + transactionTotalOrder);
       var itemsCart = new Array();
 
       $.each(transactions, function(index, value) {
-
-        console.log("city ==============> " + value.city);
 
         itemsCart.push({
           "total_amount": value.orderValue,
@@ -58,6 +44,20 @@ if (document.getElementById("dataLayer")) {
           "city": value.city
         });
       });
+
+      $.each(itemsCart, function(i,v){
+        console.log("total_amount ==============> " + v["total_amount"]);
+        console.log("shipping_cost ==============> " + v["shipping_cost"]);
+        console.log("payment_method ==============> " + v["payment_method"]);
+        console.log("transaction_id ==============> " + v["transaction_id"]);
+        console.log("product_category ==============> " + v["product_category"]);
+        console.log("quantity ==============> " + v["quantity"]);
+        console.log("city ==============> " + v["city"]);
+
+      });
+
+
+      
 
       // window._veroq.push(['track', 'Successful Purchase', {
       //   "cart": transactions
@@ -74,7 +74,3 @@ else{
 };
 
 veroEnsighten();
-
-//==============================================================================================================
-//==============================================================================================================
-
