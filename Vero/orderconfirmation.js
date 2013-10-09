@@ -1,15 +1,3 @@
-// var trimComma = function(stringToTest){
-//   var len= stringToTest.length; // length of the original string
-//   var lastChar = stringToTest.substring(len-1, len); // get the last char of the original string
-//   if (lastChar == ",") { // if the last char is dot, remove the last char
-//     result = stringToTest.substring(0, len-1);
-//   }
-//   else { // otherwise do nothing
-//     result = stringToTest;
-//   }
-//   return result;
-// }
-
 var maxCallsDataLayer = 6;
 
 var veroEnsighten = function(){
@@ -20,6 +8,7 @@ if (document.getElementById("dataLayer")) {
     var jsonCant = jsonUser.split("var");
    
     if (jsonCant.length == 3) {
+      
       jsonUser = jsonUser.replace(/var/g, "").replace(/\s/g, "");
       jsonUser = jsonUser.replace(",]", "]");
       console.log("jsonUSer ====> " + jsonUser);
@@ -54,11 +43,8 @@ if (document.getElementById("dataLayer")) {
 
       });
 
-
-      
-
       // window._veroq.push(['track', 'Successful Purchase', {
-      //   "cart": transactions
+      //   "cart": itemsCart
       // }]);
 }}
 else{
