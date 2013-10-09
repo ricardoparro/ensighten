@@ -1,3 +1,15 @@
+var trimComma = function(stringToTest){
+  var len= stringToTest.length; // length of the original string
+  var lastChar = stringToTest.substring(len-1, len); // get the last char of the original string
+  if (lastChar == ",") { // if the last char is dot, remove the last char
+    result = stringToTest.substring(0, len-1);
+  }
+  else { // otherwise do nothing
+    result = stringToTest;
+  }
+  return result;
+}
+
 var maxCallsDataLayer = 6;
 var maxCallsProductId = 6;
 console.log("entrou");
@@ -15,20 +27,33 @@ if (document.getElementById("dataLayer")) {
     console.log(jsonCant);
     console.log(jsonCant.length);
     if (jsonCant.length == 3) {
-      jsonUser = jsonUser.replace(/var/g, "");
-      jsonUser = jsonUser.replace(/\s/g, "");
+      jsonUser = jsonUser.replace(/var/g, "").replace(/\s/g, "").replace(/[\[\]&]+/g, '');
+      
       console.log("jsonUSer ====> " + jsonUser);
-      var matches = jsonUser.split('}]');
-      console.log("matches ====> " + matches);
-      if (matches) {
+      var pos = jsonUser.indexOf('}');
+      console.log("position ==============> " + pos);
+
+      var transactionsAux = jsonUser.substring(0, pos +1).split('=');
+      var transactionTotalOrderAux = jsonUser.substring(pos, (jsonUser.length - 1)).split('=');
+
+      var transactions = $.parseJSON( trimComma(transactionsAux[1]));
+      var transactionTotalOrder = $.parseJSON(trimComma(transactionTotalOrderAux[1]));
+      debugger;
+      console.log("transactions ==============> " + transactions);
+      console.log("transactionTotalOrder ==============> " + transactionTotalOrder);
+
+
+   //   var matches = jsonUser.split('}]');
+  //    console.log("matches ====> " + matches);
+     // if (matches) {
 
 
 
         // $.each(matches, function(index, value) {
 
-        console.log("matches 0 ===========================================>" + matches[0]);
+ //       console.log("matches 0 ===========================================>" + matches[0]);
 
-        console.log("matches 1 ===========================================>" + matches[1]);
+//console.log("matches 1 ===========================================>" + matches[1]);
 
         //   var submatch = matches[index];
         //   console.log("submatch ====> " + submatch);  
@@ -79,7 +104,7 @@ if (document.getElementById("dataLayer")) {
 /*      window._veroq.push(['track', 'Successful Purchase', {
         "cart": itemsCart
       }]); */
-  }
+ // }
 }}
 else{
     console.log("set timeout ====> will check in 1 sec");
