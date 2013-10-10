@@ -1,3 +1,13 @@
+//LAzy loading for a specific jquery that is needed to load this javascript
+var s = document.createElement('script');
+s.type = 'text/javascript';
+s.async = true;
+s.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js';
+var x = document.getElementsByTagName('script')[0];
+x.parentNode.insertBefore(s, x);
+
+//vero code
+
 var maxCallsDataLayer = 6;
 
 var veroEnsighten = function(){
@@ -14,11 +24,14 @@ if (document.getElementById("dataLayer")) {
       console.log("jsonUSer ====> " + jsonUser);
       var pos = jsonUser.indexOf('}');
       var transactionsAux = jsonUser.substring(0, pos + 2).split('=');
+      console.log("transactionsAux =====>" , transactionsAux);
       var transactionTotalOrderAux = jsonUser.substring(pos, (jsonUser.length - 1)).split('=');
-      var transactionTotalOrder = $.parseJSON( transactionsAux[1]);
+      console.log("transactionTotalOrderAux =====>" , transactionTotalOrderAux);
+     
       var transactions = $.parseJSON(transactionTotalOrderAux[1]);
       var itemsCart = new Array();
-
+      console.log("transactions =====>" , transactions);
+      
       $.each(transactions, function(index, value) {
 
         itemsCart.push({
