@@ -1,10 +1,3 @@
-//LAzy loading for a specific jquery that is needed to load this javascript
-var s = document.createElement('script');
-s.type = 'text/javascript';
-s.async = true;
-s.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js';
-var x = document.getElementsByTagName('script')[0];
-x.parentNode.insertBefore(s, x);
 
 //vero code
 
@@ -28,7 +21,7 @@ if (document.getElementById("dataLayer")) {
       var transactionTotalOrderAux = jsonUser.substring(pos, (jsonUser.length - 1)).split('=');
       console.log("transactionTotalOrderAux =====>" , transactionTotalOrderAux);
      
-      var transactions = $.parseJSON(transactionTotalOrderAux[1]);
+      var transactions = JSON.parse(transactionTotalOrderAux[1]);
       var itemsCart = new Array();
       console.log("transactions =====>" , transactions);
       
@@ -46,13 +39,13 @@ if (document.getElementById("dataLayer")) {
       });
 
       $.each(itemsCart, function(i,v){
-        console.log("total_amount ==============> " + v["total_amount"]);
-        console.log("shipping_cost ==============> " + v["shipping_cost"]);
-        console.log("payment_method ==============> " + v["payment_method"]);
-        console.log("transaction_id ==============> " + v["transaction_id"]);
-        console.log("product_category ==============> " + v["product_category"]);
-        console.log("quantity ==============> " + v["quantity"]);
-        console.log("city ==============> " + v["city"]);
+        console.log("total_amount ==============> " + v['total_amount']);
+        console.log("shipping_cost ==============> " + v['shipping_cost']);
+        console.log("payment_method ==============> " + v['payment_method']);
+        console.log("transaction_id ==============> " + v['transaction_id']);
+        console.log("product_category ==============> " + v['product_category']);
+        console.log("quantity ==============> " + v['quantity']);
+        console.log("city ==============> " + v['city']);
 
       });
 
