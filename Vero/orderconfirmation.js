@@ -1,11 +1,27 @@
 
 //vero code
 
+var maxCallsDataLayer = 6;
+
 var veroEnsighten = function(){
 maxCallsDataLayer--;
 if (document.getElementById("dataLayer")) {
-       console.log("=============================VERO=============================");
+    console.log("======================== VERO =======================================================");
+    var jsonUser = [];
+    jsonUser = $("#dataLayer").html();
+    var jsonCant = jsonUser.split("var");
+   
+    if (jsonCant.length == 3) {
+      
+      jsonUser = jsonUser.replace(/var/g, "").replace(/\s/g, "");
+      jsonUser = jsonUser.replace(",]", "]");
+      var pos = jsonUser.indexOf('}');
+      var transactionsAux = jsonUser.substring(0, pos + 2).split('=');
+      var transactionTotalOrderAux = jsonUser.substring(pos, (jsonUser.length )).split('=');
+     
+      var transactions = JSON.parse(transactionTotalOrderAux[1]);
       var itemsCart = new Array();
+      
       $.each(transactions, function(index, value) {
 
         itemsCart.push({
@@ -33,7 +49,7 @@ if (document.getElementById("dataLayer")) {
       // window._veroq.push(['track', 'Successful Purchase', {
       //   "cart": itemsCart
       // }]);
-}
+}}
 else{
     console.log("set timeout ====> will check in 1 sec");
 
