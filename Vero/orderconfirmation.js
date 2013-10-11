@@ -8,6 +8,7 @@ maxCallsDataLayer--;
 if (document.getElementById("dataLayer")) {
     var jsonUser = [];
     jsonUser = $("#dataLayer").html();
+    console.log("dataLayer ===========================> " + jsonUser);
     var jsonCant = jsonUser.split("var");
    
     if (jsonCant.length == 3) {
@@ -18,7 +19,7 @@ if (document.getElementById("dataLayer")) {
       var pos = jsonUser.indexOf('}');
       var transactionsAux = jsonUser.substring(0, pos + 2).split('=');
       console.log("transactionsAux =====>" , transactionsAux);
-      var transactionTotalOrderAux = jsonUser.substring(pos, (jsonUser.length - 1)).split('=');
+      var transactionTotalOrderAux = jsonUser.substring(pos, (jsonUser.length )).split('=');
       console.log("transactionTotalOrderAux =====>" , transactionTotalOrderAux);
      
       var transactions = JSON.parse(transactionTotalOrderAux[1]);
