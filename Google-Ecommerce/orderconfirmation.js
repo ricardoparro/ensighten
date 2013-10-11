@@ -4,31 +4,27 @@
 
 
 var maxCallsDataLayer = 6;
+var transactions;
 
 var veroEnsighten = function(){
 maxCallsDataLayer--;
 if (document.getElementById("dataLayer")) {
 
-console.log("=============================GOOGLE ECOMMERCE===================");
+    console.log("=============================GOOGLE ECOMMERCE===================");
     var jsonUser = [];
     jsonUser = $("#dataLayer").html();
-    console.log("dataLayer ===========================> " + jsonUser);
     var jsonCant = jsonUser.split("var");
    
     if (jsonCant.length == 3) {
       
       jsonUser = jsonUser.replace(/var/g, "").replace(/\s/g, "");
       jsonUser = jsonUser.replace(",]", "]");
-      console.log("jsonUSer ====> " + jsonUser);
       var pos = jsonUser.indexOf('}');
       var transactionsAux = jsonUser.substring(0, pos + 2).split('=');
-      console.log("transactionsAux =====>" , transactionsAux);
       var transactionTotalOrderAux = jsonUser.substring(pos, (jsonUser.length )).split('=');
-      console.log("transactionTotalOrderAux =====>" , transactionTotalOrderAux);
      
-      var transactions = JSON.parse(transactionTotalOrderAux[1]);
+      transactions = JSON.parse(transactionTotalOrderAux[1]);
       var itemsCart = new Array();
-      console.log("transactions =====>" , transactions);
       
       $.each(transactions, function(index, value) {
 

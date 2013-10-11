@@ -1,31 +1,11 @@
 
 //vero code
 
-var maxCallsDataLayer = 6;
-
 var veroEnsighten = function(){
 maxCallsDataLayer--;
 if (document.getElementById("dataLayer")) {
-    var jsonUser = [];
-    jsonUser = $("#dataLayer").html();
-    console.log("dataLayer ===========================> " + jsonUser);
-    var jsonCant = jsonUser.split("var");
-   
-    if (jsonCant.length == 3) {
-      
-      jsonUser = jsonUser.replace(/var/g, "").replace(/\s/g, "");
-      jsonUser = jsonUser.replace(",]", "]");
-      console.log("jsonUSer ====> " + jsonUser);
-      var pos = jsonUser.indexOf('}');
-      var transactionsAux = jsonUser.substring(0, pos + 2).split('=');
-      console.log("transactionsAux =====>" , transactionsAux);
-      var transactionTotalOrderAux = jsonUser.substring(pos, (jsonUser.length )).split('=');
-      console.log("transactionTotalOrderAux =====>" , transactionTotalOrderAux);
-     
-      var transactions = JSON.parse(transactionTotalOrderAux[1]);
+       console.log("=============================VERO=============================");
       var itemsCart = new Array();
-      console.log("transactions =====>" , transactions);
-      
       $.each(transactions, function(index, value) {
 
         itemsCart.push({
@@ -53,7 +33,7 @@ if (document.getElementById("dataLayer")) {
       // window._veroq.push(['track', 'Successful Purchase', {
       //   "cart": itemsCart
       // }]);
-}}
+}
 else{
     console.log("set timeout ====> will check in 1 sec");
 
