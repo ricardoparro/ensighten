@@ -13,7 +13,7 @@ if (document.getElementById("dataLayer")) {
    
     if (jsonCant.length == 3) {
       
-      jsonUser = jsonUser.replace(/var/g, "").replace(/\s/g, "");
+      jsonUser = jsonUser.replace(/var/g, "");
       jsonUser = jsonUser.replace(",]", "]");
       var pos = jsonUser.indexOf('}');
       var transactionsAux = jsonUser.substring(0, pos + 2).split('=');
